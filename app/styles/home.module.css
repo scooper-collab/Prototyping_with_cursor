@@ -1,50 +1,403 @@
+/* Cyberpunk Glassmorphism Homepage Styles */
+
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 2rem;
+  position: relative;
 }
 
+/* Orbiting Spacepunk Globe */
+.orbitContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  margin: -400px 0 0 -400px;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.orbitingGlobe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: orbit 120s linear infinite;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.globe {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin-left: -100px;
+  border-radius: 50%;
+  background: 
+    /* Spacepunk grid overlay */
+    linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+    /* Main globe gradient */
+    radial-gradient(circle at 30% 30%, 
+      rgba(0, 255, 255, 0.3) 0%,
+      rgba(128, 0, 255, 0.2) 30%,
+      rgba(255, 0, 128, 0.1) 60%,
+      rgba(10, 10, 42, 0.8) 100%);
+  background-size: 20px 20px, 20px 20px, 100% 100%;
+  box-shadow: 
+    /* Inner glow */
+    inset 0 0 30px rgba(0, 212, 255, 0.3),
+    inset -20px -20px 40px rgba(128, 0, 255, 0.2),
+    /* Outer cosmic glow */
+    0 0 40px rgba(0, 255, 255, 0.4),
+    0 0 80px rgba(255, 0, 128, 0.2),
+    0 0 120px rgba(128, 0, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  animation: globeRotate 20s linear infinite;
+  opacity: 0.6;
+}
+
+/* Globe self-rotation */
+@keyframes globeRotate {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: 
+      inset 0 0 30px rgba(0, 212, 255, 0.3),
+      inset -20px -20px 40px rgba(128, 0, 255, 0.2),
+      0 0 40px rgba(0, 255, 255, 0.4),
+      0 0 80px rgba(255, 0, 128, 0.2),
+      0 0 120px rgba(128, 0, 255, 0.1);
+  }
+  25% {
+    box-shadow: 
+      inset 0 0 30px rgba(255, 0, 128, 0.3),
+      inset -20px -20px 40px rgba(0, 212, 255, 0.2),
+      0 0 40px rgba(255, 0, 128, 0.4),
+      0 0 80px rgba(128, 0, 255, 0.2),
+      0 0 120px rgba(0, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      inset 0 0 30px rgba(128, 0, 255, 0.3),
+      inset -20px -20px 40px rgba(255, 0, 128, 0.2),
+      0 0 40px rgba(128, 0, 255, 0.4),
+      0 0 80px rgba(0, 212, 255, 0.2),
+      0 0 120px rgba(255, 0, 128, 0.1);
+  }
+  75% {
+    box-shadow: 
+      inset 0 0 30px rgba(0, 255, 255, 0.3),
+      inset -20px -20px 40px rgba(128, 0, 255, 0.2),
+      0 0 40px rgba(0, 255, 255, 0.4),
+      0 0 80px rgba(255, 0, 128, 0.2),
+      0 0 120px rgba(0, 212, 255, 0.1);
+  }
+  100% {
+    transform: rotate(360deg);
+    box-shadow: 
+      inset 0 0 30px rgba(0, 212, 255, 0.3),
+      inset -20px -20px 40px rgba(128, 0, 255, 0.2),
+      0 0 40px rgba(0, 255, 255, 0.4),
+      0 0 80px rgba(255, 0, 128, 0.2),
+      0 0 120px rgba(128, 0, 255, 0.1);
+  }
+}
+
+/* Globe pulse effect */
+.globe::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  animation: globePulse 4s ease-in-out infinite;
+}
+
+@keyframes globePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.1;
+  }
+}
+
+/* Cosmic floating particles animation */
+.container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 40px 60px, var(--neon-cyan), transparent),
+    radial-gradient(1px 1px at 90px 40px, var(--neon-pink), transparent),
+    radial-gradient(2px 2px at 160px 30px, var(--neon-purple), transparent),
+    radial-gradient(1px 1px at 200px 80px, var(--neon-electric), transparent),
+    radial-gradient(1px 1px at 120px 120px, var(--neon-magenta), transparent),
+    radial-gradient(2px 2px at 80px 180px, var(--cosmic-blue), transparent);
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  opacity: 0.15;
+  animation: float 25s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes float {
+  0% { transform: translate(0px, 0px); }
+  33% { transform: translate(30px, -30px); }
+  66% { transform: translate(-20px, 20px); }
+  100% { transform: translate(0px, 0px); }
+}
+
+/* Header with glassmorphism */
 .header {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  position: relative;
 }
 
 .header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+  background: linear-gradient(135deg, var(--neon-electric), var(--neon-cyan), var(--neon-pink), var(--neon-purple), var(--cosmic-blue));
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 
+    0 0 15px rgba(0, 212, 255, 0.6),
+    0 0 25px rgba(255, 0, 128, 0.4),
+    0 0 35px rgba(128, 0, 255, 0.3);
+  animation: glow 2s ease-in-out infinite alternate, gradientShift 4s ease infinite;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
 }
 
+@keyframes glow {
+  from {
+    filter: brightness(1) saturate(1);
+  }
+  to {
+    filter: brightness(1.2) saturate(1.3);
+  }
+}
+
+/* Grid with enhanced spacing */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  perspective: 1000px;
 }
 
+/* Glassmorphism cards with neon accents */
 .card {
-  padding: 1.5rem;
-  border-radius: var(--border-radius);
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  padding: 2rem;
+  border-radius: 20px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 0 1px rgba(0, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   text-decoration: none;
-  color: inherit;
+  color: #ffffff;
   cursor: pointer;
   display: block;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
 }
 
+/* Cosmic animated border gradient */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    var(--neon-electric), 
+    var(--neon-cyan), 
+    var(--neon-pink), 
+    var(--neon-purple), 
+    var(--cosmic-blue),
+    var(--neon-magenta),
+    var(--neon-electric));
+  background-size: 400% 400%;
+  border-radius: 20px;
+  padding: 1px;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: gradientShift 4s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Cosmic card hover effects */
 .card:hover {
-  background: rgba(0, 0, 0, 0.04);
-  transform: translateY(-2px);
+  transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(0, 212, 255, 0.4),
+    0 0 50px rgba(255, 0, 128, 0.3),
+    0 0 75px rgba(128, 0, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 212, 255, 0.5);
 }
 
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Card content with cosmic neon styling */
 .card h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
   font-weight: 600;
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.card:hover h3 {
+  color: #ffffff;
+  text-shadow: 
+    0 0 15px var(--neon-cyan),
+    0 0 25px var(--neon-electric),
+    0 0 35px var(--neon-pink);
+  transform: translateZ(10px);
 }
 
 .card p {
-  font-size: 0.9rem;
-  opacity: 0.8;
+  font-size: 1rem;
   line-height: 1.6;
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  letter-spacing: 0.01em;
+}
+
+.card:hover p {
+  color: rgba(255, 255, 255, 1);
+  transform: translateZ(5px);
+}
+
+/* Cosmic scan line effect */
+.card::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--neon-electric),
+    var(--neon-cyan), 
+    var(--neon-pink),
+    transparent);
+  opacity: 0;
+  animation: scanLine 2.5s ease-in-out infinite;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+@keyframes scanLine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px) rotateX(2deg);
+  }
+  
+  /* Scale down orbiting globe on mobile */
+  .orbitContainer {
+    width: 600px;
+    height: 600px;
+    margin: -300px 0 0 -300px;
+  }
+  
+  .globe {
+    width: 150px;
+    height: 150px;
+    margin-left: -75px;
+    top: 75px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even smaller globe for very small screens */
+  .orbitContainer {
+    width: 400px;
+    height: 400px;
+    margin: -200px 0 0 -200px;
+  }
+  
+  .globe {
+    width: 100px;
+    height: 100px;
+    margin-left: -50px;
+    top: 50px;
+    opacity: 0.4; /* More subtle on small screens */
+  }
 } 

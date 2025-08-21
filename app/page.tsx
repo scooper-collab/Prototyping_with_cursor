@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from './styles/home.module.css';
-import { instrumentSans } from './fonts';
+import { orbitron } from './fonts';
 
 export default function Home() {
   // Add your prototypes to this array
@@ -24,9 +24,16 @@ export default function Home() {
   ];
 
   return (
-    <div className={`${styles.container} ${instrumentSans.className}`}>
+    <div className={`${styles.container} ${orbitron.className}`}>
+      {/* Orbiting Spacepunk Globe */}
+      <div className={styles.orbitContainer}>
+        <div className={styles.orbitingGlobe}>
+          <div className={styles.globe}></div>
+        </div>
+      </div>
+
       <header className={styles.header}>
-        <h1>Elizabeth's prototypes</h1>
+        <h1>Stephanie's prototypes</h1>
       </header>
 
       <main>

@@ -1,3 +1,29 @@
+/* Cosmic Glassmorphism Theme Variables */
+:root {
+  /* Cosmic Neon Colors - extracted from the globe image */
+  --neon-cyan: #00d4ff;
+  --neon-pink: #ff0080;
+  --neon-purple: #8000ff;
+  --neon-electric: #00ffff;
+  --neon-magenta: #ff00ff;
+  --cosmic-blue: #4a0080;
+  
+  /* Cosmic Background Colors */
+  --bg-space: #0a0a2a;
+  --bg-deep-space: #1a1a4a;
+  --bg-cosmic: #2a1a4a;
+  --bg-card: rgba(26, 26, 74, 0.3);
+  --bg-glass: rgba(255, 255, 255, 0.08);
+  
+  /* Glass Effects */
+  --glass-border: rgba(0, 212, 255, 0.3);
+  --glass-shadow: rgba(0, 255, 255, 0.15);
+  
+  /* Sizing */
+  --max-width: 1200px;
+  --border-radius: 16px;
+}
+
 /* CSS Reset */
 /* 1. Use a more-intuitive box-sizing model */
 *, *::before, *::after {
@@ -15,7 +41,41 @@ body {
   /* 4. Improve text rendering */
   -webkit-font-smoothing: antialiased;
   /* 5. Set default font */
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-orbitron), system-ui, sans-serif;
+  
+  /* Cosmic Background - matching the globe image */
+  background: var(--bg-space);
+  background-image: 
+    /* Main cosmic gradient */
+    linear-gradient(135deg, var(--bg-space) 0%, var(--bg-deep-space) 35%, var(--cosmic-blue) 70%, var(--bg-space) 100%),
+    /* Glowing cosmic orbs */
+    radial-gradient(circle at 15% 25%, rgba(0, 212, 255, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(255, 0, 128, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 70% 80%, rgba(128, 0, 255, 0.1) 0%, transparent 35%),
+    radial-gradient(circle at 25% 75%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 40%, rgba(255, 0, 255, 0.06) 0%, transparent 60%),
+    /* Starfield effect */
+    radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 40px 70px, rgba(0, 212, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 90px 40px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 0, 128, 0.4), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 
+    100% 100%,
+    800px 800px, 
+    600px 600px, 
+    700px 700px, 
+    900px 900px, 
+    500px 500px,
+    200px 200px,
+    250px 250px,
+    300px 300px,
+    180px 180px,
+    220px 220px;
+  background-attachment: fixed;
+  color: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* 5. Improve media defaults */
