@@ -15,6 +15,11 @@ export default function Home() {
       description: 'An interactive button that creates a colorful confetti explosion',
       path: '/prototypes/confetti-button'
     },
+    {
+      title: 'TE Digital Piano',
+      description: 'A digital piano inspired by Teenage Engineering\'s minimalist design aesthetic',
+      path: '/prototypes/te-piano'
+    },
     // Add your new prototypes here like this:
     // {
     //   title: 'Your new prototype',
